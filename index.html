@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pata AO 254</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .menu-icon {
+            font-size: 30px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .dropdown, #city-dropdown {
+            display: none;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            z-index: 1000;
+            width: 150px;
+            margin: 10px auto;
+        }
+
+        .dropdown button, #city-dropdown button {
+            width: 100%;
+            padding: 10px 15px;
+            border: none;
+            background: #fff;
+            color: #333;
+            text-align: center;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .dropdown button:hover, #city-dropdown button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #city-dropdown.active {
+            display: block;
+        }
+
+        .find-rental-btn {
+            display: block;
+            margin: 20px auto;
+            margin-top: 100px;
+            padding: 20px 30px;
+            font-size: 1.5rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .find-rental-btn:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .image-container {
+            display: flex;
+            width: 300%;
+            animation: slide 50s infinite linear;
+        }
+
+        .image-container img {
+            width: 100%;
+            max-width: 300px;
+            height: 45px;
+            object-fit: cover;
+            margin: 0 10px;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            33% { transform: translateX(-33.33%); }
+            66% { transform: translateX(-66.66%); }
+            100% { transform: translateX(0); }
+            0% { transform: translateX(0); }
+            33% { transform: translateX(-33.33%); }
+            66% { transform: translateX(-66.66%); }
+            100% { transform: translateX(0); }
+        }
+
+        .footer-text {
+            margin-top: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h1 style="text-align:center">Pata AO 254</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="properties.html">Properties</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+   
+        
+
+        <button class="find-rental-btn" onclick="toggleDropdown()">Find property</button>
+
+        <div class="menu-icon">
+            <div class="dropdown" id="main-dropdown">
+                <button onclick="showCityDropdown('Rent')">Rent</button>
+                <button> <a href="contact-detail.html"style="text-decoration: none;"> Buy</a></button>
+                <button><a href="contact-detail.html"style="text-decoration: none;"> Sell</a></button>
+                <button><a href="contact-detail.html"style="text-decoration: none;"> Agent</a></button>
+            </div>
+        </div>
+
+        <!-- Secondary Dropdown for Cities -->
+        <div class="dropdown hidden" id="city-dropdown">
+            <button ><a href="nairobi.html" style="text-decoration: none;">Nairobi</a></button>
+            <button><a href="mombasa.html"style="text-decoration: none;" >Mombasa</a></button>
+            <button><a href="nakuru.html"style="text-decoration: none;" >Nakuru</a></button>
+            <button><a href="thika.html"style="text-decoration: none;" >Thika</a></button>
+        </div>
+
+   
+        <footer class="footer">
+            <div class="image-wrapper">
+                <div class="image-container">
+                    <img src="house-6115719.jpg" alt="Property 1">
+                    <img src="Mansion.webp" alt="Property 2">
+                    <img src="Modern Bungalow.webp" alt="Property 3">
+                    <img src="Modern Bungalow.webp" alt="Property 3">
+                    <img src="house-6115719.jpg" alt="Property 1">
+                    <img src="Mansion.webp" alt="Property 2">
+                </div>
+            </div>
+            <div class="footer-text">&copy; 2025 Pata AO 254 - All Rights Reserved</div>
+        </footer>
+   
+        <script>
+            function toggleDropdown() {
+                const dropdown = document.getElementById("main-dropdown");
+                dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+            }
+        
+            function showCityDropdown(action) {
+                if (action === "Buy" || action === "Sell" || action === "Agent") {
+                    alert("Call admin");
+                    window.location.href = "tel:+254700480098";
+                } else {
+                    alert(`You selected ${action}. Choose a city next.`);
+                    document.getElementById("main-dropdown").style.display = "none";
+                    document.getElementById("city-dropdown").classList.add("active");
+                }
+            }
+        </script>
+        
+
+</body>
+</html>

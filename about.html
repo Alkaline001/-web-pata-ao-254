@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    
+    
+</head>
+<body>
+   <header id="header" style="background-color: blue;">
+    <div class="logo">
+        <h1>Pata AO 254</h1>
+        
+    
+        <div class="menu-icon">
+            ☰
+            <div class="dropdown" id="main-dropdown">
+                <button onclick="showCityDropdown('Rent')">Rent</button>
+                <button onclick="showCityDropdown('Buy')">Buy</button>
+                <button onclick="showCityDropdown('Sell')">Sell</button>
+                <button onclick="showCityDropdown('Agent')">Agent</button>
+            </div>
+        </div>
+   
+    
+    <!-- Secondary Dropdown for Cities -->
+    <div class="dropdown hidden" id="city-dropdown">
+        <button onclick="callAdmin('Nairobi')">Nairobi</button>
+        <button onclick="callAdmin('Mombasa')">Mombasa</button>
+        <button onclick="callAdmin('Nakuru')">Nakuru</button>
+        <button onclick="callAdmin('Thika')">Thika</button>
+    </div>
+
+    </div>
+</div>
+   </header>
+
+    <section id="about" class="section" style="text-align: center; color: black;">
+        <div class="container">
+          <h1>Find the Best Real Estate Agent for You</h1>
+          <p>Your real estate journey starts with the perfect real estate agent..</p>
+        </div>
+      </section>
+
+      
+      
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .reviews-section {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #fff;
+        }
+
+        .reviews-section h1 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .reviews-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .review-card {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-card .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .review-card .name {
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .review-card .location {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .review-card .stars {
+            color: #f5a623;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .review-card .date {
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        .review-card .comment {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .review-card .link {
+            font-size: 0.9rem;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .review-card .link:hover {
+            text-decoration: underline;
+        }
+
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+}
+
+/* Search Icon */
+.search-icon {
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+/* Menu Icon */
+.header {
+   padding: 30px
+    
+    align-items: flex; 
+}
+
+.menu-icon {
+    position: absolute;   /* Absolute positioning to place it in the corner */
+  top: 20px;            /* Distance from the top */
+  right: 20px;          /* Distance from the right */
+  font-size: 30px;      /* Adjust font size (if it's a font icon like Font Awesome) */
+  cursor: pointer;
+   
+}
+
+
+/* Dropdown Styles */
+.menu-icon .dropdown,
+#city-dropdown {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1000;
+    width: 150px;
+}
+
+/* Dropdown Buttons */
+.menu-icon .dropdown button,
+#city-dropdown button {
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    background: #fff;
+    color: #333;
+    text-align: left;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.menu-icon .dropdown button:hover,
+#city-dropdown button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Show Dropdowns */
+.menu-icon:hover .dropdown {
+    display: block;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none;
+}
+
+#city-dropdown.active {
+    display: block;
+}
+
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1 style=" text-align:center;">
+            Our mission is to create the best <br> real estate experiences <br> between agents and clients
+        </h1>
+        <p style=" text-align:center;">
+            Founded in 2022, we’ve been connecting agents and clients together for over 3 years. <br> Our success stems from a unique combination of deep expertise in  <br> real estate and an AI-powered matching platform that has been developed <br> through years of experience and millions of matches.
+
+
+            We want all motivated buyers and sellers to connect with the perfect agent <br> so they can have the best real estate experience possible.
+        </p>
+      </div>
+    <div class="reviews-section">
+        <h1>Praise from Our Clients</h1>
+        <div class="reviews-container">
+            <div class="review-card">
+                <div class="avatar">RV</div>
+                <div class="name">Rita V.</div>
+                <div class="location">Seller in Thika Town</div>
+                <div class="stars">★★★★★</div>
+                <div class="date">07/07/2023</div>
+                <div class="comment">
+                    "The service was great and the recommendation of the realtor was fantastic. The realtor was fair and honest he gave me a very reasonable selling price and followed the listing all the way through."
+                </div>
+               
+            </div>
+
+            <div class="review-card">
+                <div class="avatar">AC</div>
+                <div class="name">Alexis C.</div>
+                <div class="location">Buyer in Nairobi Kileleshwa</div>
+                <div class="stars">★★★★★</div>
+                <div class="date">06/23/2024</div>
+                <div class="comment">
+                    "I used the website to identify potential agents in the new city I was moving to. I ultimately went with one of the recommended agents and had a very smooth home buying process."
+                </div>
+               
+            </div>
+            <div class="review-card">
+                <div class="avatar">JK</div>
+                <div class="name">James K.</div>
+                <div class="location">Buyer in Mombasa Tudor</div>
+                <div class="stars">★★★★★</div>
+                <div class="date">01/23/2024</div>
+                <div class="comment">
+                    "The website saved me alot of money and and time when i needed to move from Kongowea to Tudor. It was really 
+                    releaving to cut all the agent expenses and the arrogance."
+                </div>
+                
+            </div>
+            <div class="review-card">
+                <div class="avatar">HG</div>
+                <div class="name">Hellen G.</div>
+                <div class="location">Buyer in Nakuru Lanet</div>
+                <div class="stars">★★★★★</div>
+                <div class="date">12/23/2024</div>
+                <div class="comment">
+                    "The best website to ever enjoy over the internet for years thank you developer. Just making some 
+                    one two clicks over my phone and am moving to a new place without even spending a dime"
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        // Function to show the secondary dropdown for cities
+function showCityDropdown(action) {
+    alert(`You selected ${action}. Choose a city next.`);
+
+    // Hide main dropdown and show city dropdown
+    const mainDropdown = document.getElementById("main-dropdown");
+    const cityDropdown = document.getElementById("city-dropdown");
+
+    mainDropdown.style.display = "none";
+    cityDropdown.classList.add("active");
+}
+
+// Function to handle city selection and call admin
+function callAdmin(city) {
+    alert(`You selected ${city}.  call admin.`);
+
+    // Redirect to a call admin page or show a dialog
+    const phoneNumber = "+254700480098";
+    window.location.href = `tel:${phoneNumber}`;
+}
+
+// Redirect to the search area
+function redirectToSearch() {
+    alert("Search icon clicked!");
+    // Add search logic here
+}
+
+    </script>
+</body>
+</html>
+
+

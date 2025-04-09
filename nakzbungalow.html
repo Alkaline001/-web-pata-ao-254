@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Listings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+
+        .sidebar {
+            width: 20%;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+        }
+
+        .sidebar h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .filters button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .property-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .property-card .content {
+            padding: 15px;
+        }
+
+        .property-card .content h5 {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .property-card .content p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .property-card .content .price {
+            color: #007BFF;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Sidebar checkbox filter logic
+            const checkboxes = document.querySelectorAll('.sidebar input[type="checkbox"]');
+            const propertyCards = document.querySelectorAll('.property-card');
+    
+            const filterProperties = () => {
+                const selectedFilters = Array.from(checkboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+    
+                propertyCards.forEach(card => {
+                    const price = parseInt(card.getAttribute('data-price'));
+    
+                    if (
+                        selectedFilters.length === 0 ||
+                        selectedFilters.some(filter => {
+                            if (filter === 'under10k') return price < 10000;
+                            if (filter === '10k-30k') return price >= 10000 && price <= 30000;
+                            if (filter === '30k-80k') return price > 30000 && price <= 80000;
+                            if (filter === 'more300k') return price > 300000;
+                        })
+                    ) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            };
+    
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', filterProperties);
+            });
+    
+            filterProperties(); // Apply filters on load
+    
+            // Button filter logic
+            const buttons = document.querySelectorAll('.filters button');
+    
+            const filterByPriceRange = (min, max) => {
+                propertyCards.forEach(card => {
+                    const price = parseInt(card.getAttribute('data-price'));
+    
+                    if ((min === null || price >= min) && (max === null || price <= max)) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            };
+    
+            buttons[0].addEventListener('click', () => filterByPriceRange(null, 15000)); // Under KSh 15K
+            buttons[1].addEventListener('click', () => filterByPriceRange(15000, 27000)); // KSh 15K - 27K
+            buttons[2].addEventListener('click', () => filterByPriceRange(27000, 49000)); // KSh 27K - 49K
+            buttons[3].addEventListener('click', () => filterByPriceRange(49000, null)); // Above KSh 49K
+        });
+    </script>
+    
+</head>
+<body>
+    <div class="header">
+        <h2>Available property</h2>
+        <div class="filters">
+            <button>&lt; KSh 150K</button>
+            <button>KSh 15 - 27K</button>
+            <button>KSh 27 - 49K</button>
+            <button>&gt; KSh 49K</button>
+        </div>
+        
+        </div>
+    </div>
+    
+    <style>
+        .header {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    
+        .header h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+    
+        .header .filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+    
+        .header .filters button {
+            padding: 10px 20px;
+            border: 1px solid #007BFF;
+            border-radius: 5px;
+            background: white;
+            color: #007BFF;
+            cursor: pointer;
+        }
+    
+        .header .filters button:hover {
+            background: #007BFF;
+            color: white;
+        }
+    
+        .header .categories {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+    
+        .header .category {
+            text-align: center;
+        }
+    
+        .header .category img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+    
+        .header .category p {
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+    
+    <div class="container">
+        
+        <div class="sidebar">
+            <button class="filters">Sort: Recommended</button>
+            <h4>Filters</h4>
+            
+            <ul>
+                <li><input type="checkbox" value="under10k"> Under KSh 10K</li>
+                <li><input type="checkbox" value="10k-30k"> KSh 10K - 30K</li>
+                <li><input type="checkbox" value="30k-80k"> KSh 30K - 80K</li>
+                <li><input type="checkbox" value="more300k"> More than KSh 300K</li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+           
+            <a href="contact-detail.html" class="property-link" style="text-decoration: none;">
+            <div class="property-grid">
+                <div class="property-card" data-price="2500">
+                    <img src="house-6115719.jpg" alt="Property">
+                    <div class="content">
+                        <h5>KSh 2,500 per month</h5>
+                        <p>Furnished Studio Apartment in Ngata for rent</p>
+                        <p class="price">Nakuru, Ngata</p>
+                    </div>
+                </div>
+            </a>
+                <a href="contact-detail.html" class="property-link" style="text-decoration: none;">
+                <div class="property-card" data-price="3500">
+                    <img src="house-1836070.jpg" alt="Property">
+                    <div class="content">
+                        <h5>KSh 3,500 per month</h5>
+                        <p>1bdrm Bedsitter in Landon</p>
+                        <p class="price">Nakuru, Landon</p>
+                    </div>
+                </div>
+                </a>
+                <a href="contact-detail.html" class="property-link" style="text-decoration: none;">
+                <div class="property-card" data-price="10000">
+                    <img src="large-home-389271_1920.jpg" alt="Property">
+                    <div class="content">
+                        <h5>KSh 10,000 per month</h5>
+                        <p>1bdrm Bedsitter in Mercy Njari for rent</p>
+                        <p class="price">Nakuru, Mercy Njeri</p>
+                    </div>
+                </div>
+                </a>
+                <a href="contact-detail.html" class="property-link" style="text-decoration: none;">
+                <div class="property-card" data-price="15000">
+                    <img src="croatia-1338282.jpg" alt="Property">
+                    <div class="content">
+                        <h5>KSh 15,000 per month</h5>
+                        <p>2bdrm Apartment in Shabab for rent</p>
+                        <p class="price">Nakuru, Shabab</p>
+                    </div>
+                </div>
+                </a>
+                <a href="contact-detail.html" class="property-link" style="text-decoration: none;">
+                <div class="property-card" data-price="20000">
+                    <img src="sky-2542605.jpg" alt="Property">
+                    <div class="content">
+                        <h5>KSh 20,000 per month</h5>
+                        <p>2bdrm House in Milimani for rent</p>
+                        <p class="price">Nakuru , Milimani</p>
+                    </div>
+                </div>
+                </a>
+                <a href="contact-detail.html" class="property-link" style="text-decoration: none;">
+                <div class="property-card" data-price="25000">
+                    <img src="bungalow-2095683.jpg" alt="Property">
+                    <div class="content">
+                        <h5>KSh 25,000 per month</h5>
+                        <p>3bdrm Maisonette in Whitehouse for rent</p>
+                        <p class="price">Nakuru, Whitehouse</p>
+                    </div>
+                </div>
+
+                </a>
+                <a href="contact-detail.html" class="property-link" style="text-decoration: none;">
+                <div class="property-card" data-price="30000">
+                    <img src="clouds-4041957.jpg" alt="Property">
+                    <div class="content">
+                        <h5>KSh 30,000 per month</h5>
+                        <p>3bdrm Bungalow in Nakuru Lanet for rent</p>
+                        <p class="price">Nakuru, Lanet</p>
+                    </div>
+                </div>
+                </a>
+                <a href="contact-detail.html" class="property-link" style="text-decoration: none;">
+                <div class="property-card" data-price="35000">
+                    <img src="sky-2542606.jpg" alt="Property">
+                    <div class="content">
+                        <h5>KSh 35,000 per month</h5>
+                        <p>4bdrm House in Menengai for rent</p>
+                        <p class="price">Nakuru, Menengai</p>
+                    </div>
+                </div>
+                </a>
+                <a href="contact-detail.html" class="property-link" style="text-decoration: none;">
+                <div class="property-card" data-price="40000">
+                    <img src="architecture-1836607.jpg" alt="Property">
+                    <div class="content">
+                        <h5>KSh 40,000 per month</h5>
+                        <p>4bdrm Mansion in Kabarak for rent</p>
+                        <p class="price">Nakuru, Kabarak</p>
+                    </div>
+                </div>
+                </a>
+                <a href="contact-detail.html" class="property-link" style="text-decoration: none;">
+                <div class="property-card" data-price="50000">
+                    <img src="snow-3225425.jpg" alt="Property">
+                    <div class="content">
+                        <h5>KSh 50,000 per month</h5>
+                        <p>5bdrm House in Njoro for rent</p>
+                        <p class="price">Nakuru, Njoro</p>
+                    </div>
+                </div>
+               </a>
+                <a href="contact-detail.html" class="property-link" style="text-decoration: none;">
+                    <div class="property-card" data-price="60000">
+                        <img src="house-3204674.jpg" alt="Property">
+                        <div class="content">
+                            <h5>KSh 60,000 per month</h5>
+                            <p>5bdrm Mansion in Railways for rent</p>
+                            <p class="price">Nakuru, Railways/p>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="contact-detail.html" class="property-link" style="text-decoration: none;">
+                <div class="property-card" data-price="70000">
+                    <img src="bungalow-20544.jpg" alt="Property">
+                    <div class="content">
+                        <h5>KSh 70,000 per month</h5>
+                        <p>Luxury Villa in Milimani for rent</p>
+                        <p class="price">Nakuru, Milimani</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
