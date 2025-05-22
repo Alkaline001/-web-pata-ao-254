@@ -7,131 +7,244 @@
     <script src="https://kit.fontawesome.com/61107a0cf8.js" crossorigin="anonymous"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif; /* Modern font */
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            height: 100px;
+            background-color: #3b5998;
+            text-align: center;
+            margin-bottom: 0px;
+        }
+
+        header h1 {
+            color: white;
+            font-size: 2.5em;
+            line-height: 100px;
+            margin: 0;
+            font-weight: 600;
         }
 
         .contact-section {
-            background-color: #f9f9f9;
-            padding: 50px 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 240, 240, 0.95)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c'); /* Subtle background image with overlay */
+            background-size: cover;
+            background-position: center;
+            padding: 60px 20px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3); /* Light overlay for readability */
+            z-index: 0;
+        }
+
+        .contact-section > * {
+            position: relative;
+            z-index: 1; /* Ensure content is above the overlay */
         }
 
         .contact-section h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #333;
+            font-size: 2.8em;
+            margin-bottom: 25px;
+            color: #222;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+        }
+
+        .contact-section h2::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background-color: #ff6600;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
 
         .contact-section p {
-            font-size: 1.1em;
-            color: #666;
-            margin-bottom: 30px;
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 40px;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .contact-section .social-icons {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
+            margin-bottom: 40px;
         }
 
         .contact-section .social-icons a {
             color: #fff;
-            background-color: #0077b5; /* Default LinkedIn color */
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             text-decoration: none;
-            font-size: 1.5em;
-            transition: background-color 0.3s;
-        }
-
-        .contact-section .social-icons a.facebook {
-            background-color: #3b5998;
-        }
-
-        .contact-section .social-icons a.twitter {
-            background-color: #1da1f2;
-        }
-
-        .contact-section .social-icons a.instagram {
-            background-color: #e4405f;
+            font-size: 1.8em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .contact-section .social-icons a:hover {
-            opacity: 0.8;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            opacity: 1;
+        }
+
+        /* Specific colors for each icon */
+        .contact-section .social-icons a:nth-child(1) { /* Phone */
+            background-color: #4CAF50;
+        }
+
+        .contact-section .social-icons a:nth-child(2) { /* WhatsApp */
+            background-color: #25D366;
+        }
+
+        .contact-section .social-icons a:nth-child(3) { /* Email */
+            background-color: #D44638;
+        }
+
+        .contact-section .social-icons a:nth-child(4) { /* Twitter */
+            background-color: #1DA1F2;
+        }
+
+        .contact-section .form-container {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            background-color: transparent;
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-form input, 
+        .contact-form textarea, 
+        .contact-form button {
+            width: 90%;
+            padding: 14px;
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #ff6600;
+            box-shadow: 0 0 5px rgba(255, 102, 0, 0.3);
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #bbb;
+            font-style: italic;
+        }
+
+        .contact-form textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        .contact-form button {
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #e65500;
+            transform: scale(1.05);
         }
 
         .contact-section .email {
-            margin-top: 30px;
-            font-size: 1.2em;
+            margin-top: 40px;
+            font-size: 1.3em;
             color: #333;
         }
 
         .contact-section .email a {
-            color: #0077b5;
+            color: #ff6600;
             text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
         .contact-section .email a:hover {
+            color: #e65500;
             text-decoration: underline;
         }
-        .contact-form {
-      background-color: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
-    }
 
-    .contact-form input, 
-    .contact-form textarea, 
-    .contact-form button {
-      width: 90%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 16px;
-      outline: none;
-    }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .contact-section h2 {
+                font-size: 2.2em;
+            }
 
-    .contact-form input::placeholder,
-    .contact-form textarea::placeholder {
-      color: #aaa;
-    }
+            .contact-section p {
+                font-size: 1em;
+            }
 
-    .contact-form textarea {
-      resize: none;
-      
-      height: 100px;
-    }
+            .contact-section .social-icons a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5em;
+            }
 
-    .contact-form button {
-      background-color: #ff6600;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .contact-form button:hover {
-      background-color: #e65500;
-    }
+            .contact-form {
+                max-width: 350px;
+            }
+        }
     </style>
 </head>
 <body>
     <header style="height: 100px; background-color: #3b5998; text-align: center; margin-bottom: 0px;">
-        <h1> PATA AO 254</h1>
-        
-           
-          </div>
+        <h1>PATA AO 254</h1>
     </header>
 
     <section class="contact-section">
@@ -143,29 +256,20 @@
             <div class="social-icons" style="text-align: center;
             text-decoration: none;
             font-size: 20px;
-          
             transition: transform 0.5s;">
                 <a href="+254700480098" style="color: rgb(55, 54, 54);"><i class="fa-sharp fa-solid fa-phone-volume"></i></a>
                 <a href="https://wa.link/y8zz6m" style="color: green;"><i class="fa-brands fa-square-whatsapp"></i></a>
                 <a href="limaajnr@gmail.com" style="color: blue;"><i class="fa-regular fa-envelope"></i></a>
                 <a href="https://x.com/YatzaaAlkaline?t=0_3ktpLrkt6F3s6R5g&s=08" style="color: rgb(4, 4, 70);"><i class="fa-brands fa-x-twitter"></i></a>
-                
-        
             </div>
         </div>
-        <div style=" font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        background-color: #f5f5f5;">
+        <div class="form-container">
             <form class="contact-form">
                 <input type="text" name="name" placeholder="Full Name" required>
                 <input type="email" name="email" placeholder="Email" required>
                 <textarea name="message" placeholder="Message" required></textarea>
                 <button type="submit">Contact Us</button>
-              </form>
+            </form>
         </div>
         <div class="email">
             <p>Email us at: <a href="limaajnr@gmail.com">info@pataAO254.com</a></p>

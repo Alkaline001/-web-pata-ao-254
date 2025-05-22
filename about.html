@@ -3,244 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pata AO 254 - Your trusted partner for property rentals and sales in Kenya.">
+    <meta name="keywords" content="property, real estate, Kenya, rentals, sales, Nairobi, Mombasa">
     <title>About Us</title>
-    
-    
-</head>
-<body>
-   <header id="header" style="background-color: blue;">
-    <div class="logo">
-        <h1>Pata AO 254</h1>
-        
-    
-        <div class="menu-icon">
-            ☰
-            <div class="dropdown" id="main-dropdown">
-                <button onclick="showCityDropdown('Rent')">Rent</button>
-                <button onclick="showCityDropdown('Buy')">Buy</button>
-                <button onclick="showCityDropdown('Sell')">Sell</button>
-                <button onclick="showCityDropdown('Agent')">Agent</button>
-            </div>
-        </div>
-   
-    
-    <!-- Secondary Dropdown for Cities -->
-    <div class="dropdown hidden" id="city-dropdown">
-        <button onclick="callAdmin('Nairobi')">Nairobi</button>
-        <button onclick="callAdmin('Mombasa')">Mombasa</button>
-        <button onclick="callAdmin('Nakuru')">Nakuru</button>
-        <button onclick="callAdmin('Thika')">Thika</button>
-    </div>
-
-    </div>
-</div>
-   </header>
-
-    <section id="about" class="section" style="text-align: center; color: black;">
-        <div class="container">
-          <h1>Find the Best Real Estate Agent for You</h1>
-          <p>Your real estate journey starts with the perfect real estate agent..</p>
-        </div>
-      </section>
-
-      
-      
     <style>
         body {
-            font-family: Arial, sans-serif;
-            
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f9;
+            padding-bottom: 100px; /* Prevent footer overlap, if adding footer later */
+        }
+
+        /* Header Styles (Exact Match to index.html, excluding dropdowns) */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo img {
+            width: 100px;
+        }
+
+        .menu-icon {
+            font-size: 30px;
+            cursor: pointer;
+            display: none;
+            padding: 10px;
+            color: white;
+        }
+
+        /* Responsive Navigation (Exact Match to index.html with z-index fix) */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background-color: rgba(0,0,0,0.8);
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                padding: 10px;
+                border-radius: 10px;
+            }
+
+            nav ul.active {
+                display: flex;
+                z-index: 1000; /* Ensure menu appears above about-section */
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            header {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        /* About Section (Unchanged) */
+        .about-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 240, 240, 0.95)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            color: #222;
+        }
+
+        .about-section h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.3;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .about-section h1::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: #ff6600;
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .about-section p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Reviews Section (Unchanged) */
+        .reviews-section {
+            text-align: center;
+            padding: 60px 20px;
             background-color: #f9f9f9;
         }
 
-        .reviews-section {
-            text-align: center;
-            padding: 50px 20px;
-            background-color: #fff;
+        .reviews-section h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #222;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
         }
 
-        .reviews-section h1 {
-            font-size: 2rem;
-            margin-bottom: 30px;
+        .reviews-section h1::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background-color: #3b5998;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
 
         .reviews-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
+            padding: 0 20px;
         }
 
         .review-card {
             background: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 20px;
-            width: 300px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: none;
+            border-radius: 15px;
+            padding: 25px;
+            width: 100%;
+            max-width: 320px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
         }
 
         .review-card .avatar {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background-color: #e0e0e0;
+            background: linear-gradient(135deg, #3b5998, #ff6600);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 1.2rem;
-            color: #555;
-            margin-bottom: 10px;
+            font-size: 1.5em;
+            color: white;
+            margin: 0 auto 15px;
         }
 
         .review-card .name {
-            font-weight: bold;
-            font-size: 1rem;
-            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            color: #333;
         }
 
         .review-card .location {
-            font-size: 0.9rem;
+            font-size: 0.95em;
             color: #777;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .review-card .stars {
             color: #f5a623;
-            font-size: 1.2rem;
+            font-size: 1.3em;
             margin-bottom: 10px;
         }
 
         .review-card .date {
-            font-size: 0.8rem;
+            font-size: 0.85em;
             color: #aaa;
             margin-bottom: 15px;
         }
 
         .review-card .comment {
-            font-size: 0.95rem;
-            line-height: 1.5;
+            font-size: 1em;
+            line-height: 1.6;
             color: #444;
             margin-bottom: 15px;
+            font-style: italic;
         }
 
         .review-card .link {
-            font-size: 0.9rem;
-            color: #007BFF;
+            font-size: 0.95em;
+            color: #ff6600;
             text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
         .review-card .link:hover {
+            color: #e65500;
             text-decoration: underline;
         }
 
-        /* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-}
+        /* Responsive Adjustments (Unchanged) */
+        @media (max-width: 768px) {
+            .about-section h1 {
+                font-size: 2.2em;
+            }
 
-/* Navbar */
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-}
+            .about-section p {
+                font-size: 1em;
+            }
 
-/* Search Icon */
-.search-icon {
-    cursor: pointer;
-    font-size: 1.5rem;
-}
+            .reviews-section h1 {
+                font-size: 2em;
+            }
 
-/* Menu Icon */
-.header {
-   padding: 30px
-    
-    align-items: flex; 
-}
-
-.menu-icon {
-    position: absolute;   /* Absolute positioning to place it in the corner */
-  top: 20px;            /* Distance from the top */
-  right: 20px;          /* Distance from the right */
-  font-size: 30px;      /* Adjust font size (if it's a font icon like Font Awesome) */
-  cursor: pointer;
-   
-}
-
-
-/* Dropdown Styles */
-.menu-icon .dropdown,
-#city-dropdown {
-    display: none;
-    position: absolute;
-    top: 30px;
-    right: 0;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    overflow: hidden;
-    z-index: 1000;
-    width: 150px;
-}
-
-/* Dropdown Buttons */
-.menu-icon .dropdown button,
-#city-dropdown button {
-    width: 100%;
-    padding: 10px 15px;
-    border: none;
-    background: #fff;
-    color: #333;
-    text-align: left;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.menu-icon .dropdown button:hover,
-#city-dropdown button:hover {
-    background-color: #f0f0f0;
-}
-
-/* Show Dropdowns */
-.menu-icon:hover .dropdown {
-    display: block;
-}
-
-/* Utility Classes */
-.hidden {
-    display: none;
-}
-
-#city-dropdown.active {
-    display: block;
-}
-
-
+            .review-card {
+                max-width: 280px;
+            }
+        }
     </style>
 </head>
-
 <body>
-    <div>
-        <h1 style=" text-align:center;">
-            Our mission is to create the best <br> real estate experiences <br> between agents and clients
-        </h1>
-        <p style=" text-align:center;">
-            Founded in 2022, we’ve been connecting agents and clients together for over 3 years. <br> Our success stems from a unique combination of deep expertise in  <br> real estate and an AI-powered matching platform that has been developed <br> through years of experience and millions of matches.
+    <!-- Header Section (Exact Match to index.html, excluding Find Property features) -->
+    <header>
+        <div class="logo">
+            <img src="ChatGPT Image May 9, 2025, 04_09_39 PM.png" alt="Pata AO 254 Logo" />
+        </div>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="properties.html">Properties</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="menu-icon" role="button" tabindex="0" onclick="toggleNav()" onkeydown="if(event.key === 'Enter' || event.key === ' ') toggleNav()">☰</div>
+    </header>
 
+    <!-- About Section (Unchanged) -->
+    <section class="about-section">
+        <div>
+            <h1 style="text-align:center;">
+                Our mission is to create the best <br> real estate experiences <br> between agents and clients
+            </h1>
+            <p style="text-align:center;">
+                Founded in 2022, we’ve been connecting agents and clients together for over 3 years. <br> Our success stems from a unique combination of deep expertise in <br> real estate and an AI-powered matching platform that has been developed <br> through years of experience and millions of matches.
+                We want all motivated buyers and sellers to connect with the perfect agent <br> so they can have the best real estate experience possible.
+            </p>
+        </div>
+    </section>
 
-            We want all motivated buyers and sellers to connect with the perfect agent <br> so they can have the best real estate experience possible.
-        </p>
-      </div>
+    <!-- Reviews Section (Unchanged) -->
     <div class="reviews-section">
         <h1>Praise from Our Clients</h1>
         <div class="reviews-container">
@@ -253,7 +297,6 @@ body {
                 <div class="comment">
                     "The service was great and the recommendation of the realtor was fantastic. The realtor was fair and honest he gave me a very reasonable selling price and followed the listing all the way through."
                 </div>
-               
             </div>
 
             <div class="review-card">
@@ -265,8 +308,8 @@ body {
                 <div class="comment">
                     "I used the website to identify potential agents in the new city I was moving to. I ultimately went with one of the recommended agents and had a very smooth home buying process."
                 </div>
-               
             </div>
+
             <div class="review-card">
                 <div class="avatar">JK</div>
                 <div class="name">James K.</div>
@@ -274,11 +317,10 @@ body {
                 <div class="stars">★★★★★</div>
                 <div class="date">01/23/2024</div>
                 <div class="comment">
-                    "The website saved me alot of money and and time when i needed to move from Kongowea to Tudor. It was really 
-                    releaving to cut all the agent expenses and the arrogance."
+                    "The website saved me a lot of money and time when I needed to move from Kongowea to Tudor. It was really relieving to cut all the agent expenses and the arrogance."
                 </div>
-                
             </div>
+
             <div class="review-card">
                 <div class="avatar">HG</div>
                 <div class="name">Hellen G.</div>
@@ -286,43 +328,17 @@ body {
                 <div class="stars">★★★★★</div>
                 <div class="date">12/23/2024</div>
                 <div class="comment">
-                    "The best website to ever enjoy over the internet for years thank you developer. Just making some 
-                    one two clicks over my phone and am moving to a new place without even spending a dime"
+                    "The best website to ever enjoy over the internet for years thank you developer. Just making some one two clicks over my phone and am moving to a new place without even spending a dime"
                 </div>
-                
             </div>
         </div>
     </div>
+
     <script>
-        // Function to show the secondary dropdown for cities
-function showCityDropdown(action) {
-    alert(`You selected ${action}. Choose a city next.`);
-
-    // Hide main dropdown and show city dropdown
-    const mainDropdown = document.getElementById("main-dropdown");
-    const cityDropdown = document.getElementById("city-dropdown");
-
-    mainDropdown.style.display = "none";
-    cityDropdown.classList.add("active");
-}
-
-// Function to handle city selection and call admin
-function callAdmin(city) {
-    alert(`You selected ${city}.  call admin.`);
-
-    // Redirect to a call admin page or show a dialog
-    const phoneNumber = "+254700480098";
-    window.location.href = `tel:${phoneNumber}`;
-}
-
-// Redirect to the search area
-function redirectToSearch() {
-    alert("Search icon clicked!");
-    // Add search logic here
-}
-
+        function toggleNav() {
+            const navMenu = document.getElementById("nav-menu");
+            navMenu.classList.toggle("active");
+        }
     </script>
 </body>
 </html>
-
-
